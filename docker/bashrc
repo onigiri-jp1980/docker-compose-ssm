@@ -1,0 +1,12 @@
+PS1='\[\e[0m\][\[\e[0;32m\]\u\[\e[0m\]@\[\e[0m\]\H \[\e[0;38;5;33m\]\W\[\e[0m\]]$ '
+
+# You may uncomment the following lines if you want `ls' to be colorized:
+LS_OPTIONS='--color=auto'
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -l'
+alias l='ls $LS_OPTIONS -lA'
+
+#Some more alias to avoid making mistakes:
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'

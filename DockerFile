@@ -1,0 +1,18 @@
+FROM alpine:3.22
+ARG USER_NAME
+ARG USER_ID
+ARG USER_GID
+RUN apk update && apk add --no-cache \
+    bash coreutils aws-cli \
+    curl \
+    jq \
+    unzip \
+    zip \
+    docker docker-cli-compose \
+    shadow sudo && \
+    groupadd -g ${USER_GID} ${USER_NAME} && \
+    useradd -m -u ${USER_ID} -g ${USER_NAME} -s /bin/bash ${USER_NAME} && \
+    usermod -aG docker ${USER_NAME} && \
+    echo "${USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
+    chown -R ${USER_NAME}:${USER_NAME} /home/${USER_NAME}
+COPY docker/bashrc /home/${USER_NAME}/.bashrc

@@ -1,0 +1,20 @@
+services:
+  aws:
+    privileged: true
+    build:
+      context: .
+      dockerfile: DockerFile
+      args:
+        USER_NAME: ${USER_NAME:-appuser}
+        USER_ID: ${USER_ID:-1000}
+        USER_GID: ${USER_GID:-1000}
+
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-test}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-test}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-ap-southeast-1}
+    env_file: .env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /app
+    user: ${USER_NAME}
