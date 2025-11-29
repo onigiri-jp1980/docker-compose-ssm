@@ -16,5 +16,6 @@ services:
     env_file: .env
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./code:/app
     working_dir: /app
     user: ${USER_NAME}
