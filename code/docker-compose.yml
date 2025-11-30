@@ -1,4 +1,12 @@
 services:
   app:
-    image: alpine:3.22
     container_name: app
+    build:
+      context: .
+      dockerfile: DockerFile
+    environment:
+      - database_url=${database_url}
+      - db_user=${db_user}
+      - db_password=${db_password}
+      - db_name=${db_name}
+    working_dir: /work
